@@ -8,6 +8,7 @@ import xyz.zhtdemo.bbs.entity.IntegralXmlEnt;
 import xyz.zhtdemo.bbs.entity.IntergralEnum;
 
 /**
+ * 
  * 论坛设置信息
  * @author zheng
  *
