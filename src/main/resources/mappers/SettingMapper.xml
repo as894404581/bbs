@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="xyz.zhtdemo.bbs.dao.SettingDao">
+
+	<select id="getSetting" resultType="Map">
+		select `key`,`value` from setting
+	</select>
+	<update id="updateSetting" parameterType="xyz.zhtdemo.bbs.entity.SettingEnt">
+		update `setting` set `value`=#{value} where `key`=#{key}
+	</update>
+</mapper>

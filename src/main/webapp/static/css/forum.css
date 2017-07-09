@@ -1,0 +1,110 @@
+#mess {
+	border: 1px solid #CCCCCC;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#mess table tr {
+	height: 35px;
+	
+	border-bottom: 1px #CCCCCC dashed;
+	
+}
+#mess table{
+	border-collapse:collapse
+}
+.post {
+	position: relative;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top: 25px;
+	margin-bottom: 5px;
+	border: 1px solid #CCCCCC;
+}
+
+.c em {
+	width: 20px;
+	height: 29px;
+	font-style: normal;
+	word-wrap: break-word;
+	overflow: hidden;
+	color: #ccc
+}
+
+.c {
+	font-size: 15px;
+	margin: 10px;
+	margin-left: 0px;
+}
+
+.bm {
+	
+	padding: 10px;
+	border: 1px solid #ccc;
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.bm em {
+	color: #F26C4F;
+}
+
+.paging {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+	margin: 0px;
+	height: 25px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border: 1px solid #ccc;
+	line-height: 25px;
+}
+
+.paging:hover,.UpGobackPageButton:hover {
+	border: 1px solid #369;
+}
+
+.checkpaging {
+	display: inline-block;
+	width: 20px;
+	background-color: #ccc;
+	text-align: center;
+	margin: 0px;
+	height: 25px;
+	border: 1px solid #ccc;
+	padding-left: 5px;
+	padding-right: 5px;
+	line-height: 25px;
+}
+
+#paging {
+	display: inline-block;
+	margin-right: 0px;
+	
+	margin: 5px;
+	line-height: 25px;
+}
+
+.UpGobackPageButton {
+	text-align: center;
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	border: 1px solid #ccc;
+	line-height: 25px;
+}
+
+#mess table tbody tr:hover {
+	background-color: #f2f2f2;
+}
+.time{
+	color: #999999;
+}
+.time:hover{
+	color: #000000;
+}

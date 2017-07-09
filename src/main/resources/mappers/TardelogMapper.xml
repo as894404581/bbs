@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="xyz.zhtdemo.bbs.dao.TardelogDao">
+	<insert id="insertTarde" parameterType="xyz.zhtdemo.bbs.entity.TardelogEnt">
+		INSERT INTO `tradelog` 
+		(
+		<trim suffixOverrides=",">
+		`uid`, `pid`, 
+		
+			<if test="aid!=null">
+			`aid`, 
+			</if>
+			<if test="rid!=null">
+			`rid`, 
+			</if>
+			<if test="price!=null">
+			`price`, 
+			</if>
+			<if test="t_type!=null">
+			`t_type`,
+			</if>
+			<if test="trade_time!=null">
+			`trade_time`,
+			</if>
+			<if test="trade_type!=null">
+			`trade_type`
+			</if>
+		</trim>
+
+		) 
+		VALUES 
+		(
+		<trim suffixOverrides=",">
+		#{uid}, 
+		#{pid}, 
+		
+			<if test="aid!=null">
+			#{aid}, 
+			</if>
+			<if test="rid!=null">
+			#{rid}, 
+			</if>
+			<if test="price!=null">
+			#{price}, 
+			</if>
+			<if test="t_type!=null">
+			#{t_type},
+			</if>
+			<if test="trade_time!=null">
+			#{trade_time},
+			</if>
+			<if test="trade_type!=null">
+			#{trade_type}
+			</if>
+			
+		</trim>
+		)
+	</insert>
+	<select id="getTardelogList" resultType="xyz.zhtdemo.bbs.entity.TardelogEnt">
+		SELECT tid, uid, pid, aid, rid, price, t_type,trade_time,trade_type
+		FROM `tradelog` 
+		where 
+		<trim suffixOverrides="and">	
+			<if test="tid!=null">
+			tid=#{tid} and
+			</if>		
+			<if test="uid!=null">
+			uid=#{uid} and
+			</if>
+			<if test="pid!=null">
+			pid=#{pid} and
+			</if>	
+			<if test="aid!=null">
+			aid=#{aid} and
+			</if>
+			<if test="rid!=null">
+			rid=#{rid} and
+			</if>
+			<if test="trade_type!=null">
+			trade_type=#{trade_type} and
+			</if>
+			t_type=#{t_type}
+		</trim>
+		
+	</select>
+	<select id="getTardelog" resultType="xyz.zhtdemo.bbs.entity.TardelogEnt">
+		SELECT tid, uid, pid, aid, rid, price, t_type,trade_time,trade_type
+		FROM `tradelog` 
+		where 
+		<trim suffixOverrides="and">	
+			<if test="tid!=null">
+			tid=#{tid} and
+			</if>		
+			<if test="uid!=null">
+			uid=#{uid} and
+			</if>
+			<if test="pid!=null">
+			pid=#{pid} and
+			</if>	
+			<if test="aid!=null">
+			aid=#{aid} and
+			</if>
+			<if test="rid!=null">
+			rid=#{rid} and
+			</if>
+			
+			trade_type=#{trade_type} and
+			t_type=#{t_type}
+		</trim>
+	</select>
+</mapper>

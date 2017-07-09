@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!--邮件服务配置  -->
+	<!-- <Email>
+		是否开启登录邮箱验证 0:关闭 1:开启 
+		<Email_Verification>1</Email_Verification>
+		邮件服务器地址
+		<Email_Server>smtp.qq.com</Email_Server>
+		邮箱用户名
+		<Email_User>894404581@qq.com</Email_User>
+		邮箱密码
+		<Email_Password>atlmuzyglagpbdcj</Email_Password>
+		邮件服务器端口
+		<Email_Prot>465</Email_Prot>
+		是否验证用户名和密码
+		<Email_Auth>true</Email_Auth>
+		是否启用SSL连接
+		<SSLConnt>true</SSLConnt>
+	</Email> -->
+	<Email>
+		<!--是否开启登录邮箱验证 0:关闭 1:开启  -->
+		<Email_Verification>1</Email_Verification>
+		<!-- 邮件服务器地址 -->
+		<Email_Server>md-93.webhostbox.net</Email_Server>
+		<!-- 邮箱用户名 -->
+		<Email_User>bsmt@bsmts.net</Email_User>
+		<!-- 邮箱密码 -->
+		<Email_Password>as77889900</Email_Password>
+		<!-- 邮件服务器端口 -->
+		<Email_Prot>465</Email_Prot>
+		<!-- 是否验证用户名和密码 -->
+		<Email_Auth>true</Email_Auth>
+		<!-- 是否启用SSL连接 -->
+		<SSLConnt>true</SSLConnt>
+	</Email>
+	<Upload>
+		<!-- 远程附件配置 -->
+		<RemoteAttachment>
+			<!-- 是否开启远程附件 0:关闭 1:开启 -->
+			<Enable>0</Enable>
+			<!-- Ftp服务器地址,支持域名 -->
+			<FtpAddress>192.168.0.126</FtpAddress>
+			<!--Ftp用户名  -->
+			<FtpUser>admin</FtpUser>
+			<!-- Ftp密码 -->
+			<FtpPassword>as77889900</FtpPassword>
+			<!-- Ftp端口 -->
+			<FtpPort>21</FtpPort>
+		</RemoteAttachment>
+		<!-- 附件访问目录 -->
+		<Upload_Url>data/upload</Upload_Url>
+	</Upload>
+	<!-- 积分设置 -->
+	<Integral>
+		<!-- 积分一 -->
+		<Integral1>
+			<!-- 积分名称 -->
+			<Name>积分</Name>
+			<!-- 积分转换比例 -->
+			<ExchangeRate>1</ExchangeRate>
+			<!-- 是否兑出 0:关闭 1:开启 -->
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<!-- 是否能兑入 0:关闭 1:开启 -->
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<!-- 是否启用积分 -->
+			<Enable>1</Enable>
+		</Integral1>
+		<Integral2>
+			<Name>金币</Name>
+			<ExchangeRate>1</ExchangeRate>
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<Enable>1</Enable>
+		</Integral2>
+		<Integral3>
+			<Name>扩展1</Name>
+			<ExchangeRate>1</ExchangeRate>
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<Enable>0</Enable>
+		</Integral3>
+		<Integral4>
+			<Name>扩展2</Name>
+			<ExchangeRate>1</ExchangeRate>
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<Enable>0</Enable>
+		</Integral4>
+		<Integral5>
+			<Name>扩展3</Name>
+			<ExchangeRate>1</ExchangeRate>
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<Enable>0</Enable>
+		</Integral5>
+		<Integral6>
+			<Name>扩展4</Name>
+			<ExchangeRate>1</ExchangeRate>
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<Enable>0</Enable>
+		</Integral6>
+		<Integral7>
+			<Name>扩展5</Name>
+			<ExchangeRate>1</ExchangeRate>
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<Enable>0</Enable>
+		</Integral7>
+		<Integral8>
+			<Name>扩展6</Name>
+			<ExchangeRate>1</ExchangeRate>
+			<ExchangeEnableOut>0</ExchangeEnableOut>
+			<ExchangeEnableIn>0</ExchangeEnableIn>
+			<Enable>0</Enable>
+		</Integral8>
+		<!-- 总积分规则 -->
+		<Rule>Integral1+Integral2/3</Rule>
+		<TradeIntegral>Integral2</TradeIntegral>
+	</Integral>
+	<!-- 日志设置 -->
+	<Log>
+		<!--日志文件路径  -->
+		<LogUrl>E://cs.txt</LogUrl>
+	</Log>
+</Config>

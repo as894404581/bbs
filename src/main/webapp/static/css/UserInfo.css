@@ -1,0 +1,31 @@
+.tabl{
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.tabl td{
+	border: 1px solid #CCCCCC;
+}
+.tabl td .munes li{
+	margin: 0px;
+	width: 100%;
+	text-align: center;
+	line-height: 33px;
+	border: 1px solid #CCCCCC;
+}
+.tabl td .munes{
+	margin: 0px;
+	list-style-type: none;
+	padding: 0px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.listA{
+	margin: auto;
+	display: block;
+	height: 33px;
+line-height: 33px;
+}
+.a{
+	background-color: #CCCCCC;
+}

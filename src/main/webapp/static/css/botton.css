@@ -1,0 +1,13 @@
+#botton {
+	height: 60px;
+	
+	border-top: 1px solid #CCCCCC;
+}
+.bbsinfo p{
+	
+	font-size: 12px;
+	color: #666;
+}
+.bbsinfo p a:hover{
+	
+}

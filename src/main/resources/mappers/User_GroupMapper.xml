@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="xyz.zhtdemo.bbs.dao.User_GroupDao">
+	<select id="getUserGroupList" resultType="xyz.zhtdemo.bbs.entity.User_GroupEnt">
+		select gid,gname,group_type,integral_max,integral_mini,allowvisit,access_rights from user_group
+	</select>
+	
+</mapper>

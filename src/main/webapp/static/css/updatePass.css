@@ -1,0 +1,38 @@
+#all {
+	text-align: center;
+	width: 500px;
+	height: 500px;
+	margin: auto;
+	border: 1px solid black;
+}
+
+img {
+	border: 1px solid black;
+	margin-top: 20px;
+}
+
+#all table {
+	margin: auto;
+	margin-top: 20px;
+	border: 1px solid black;
+}
+
+#all table tr td {
+	border: 1px black solid;
+	text-align: center;
+}
+
+a {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid black;
+	text-decoration: none;
+	color: black;
+}
+
+input[type="text"] {
+	width: 300px;
+	height: 40px;
+}

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="xyz.zhtdemo.bbs.dao.UserDao">
+	<select id="Login" resultType="xyz.zhtdemo.bbs.entity.UserEnt">
+		select usr.id id,usr.users
+		user,usr.email email,portrait portrait,gid gid,agid agid
+		from users usr,email e
+		where
+		usr.id=e.uid and usr.password=#{password}
+		and (usr.users=#{user} or
+		usr.email=#{email})
+
+	</select>
+	<select id="checkUser" resultType="xyz.zhtdemo.bbs.entity.UserEnt">
+		select id from users where
+		users=#{user} or email=#{user}
+	</select>
+	<insert id="insertUser" parameterType="xyz.zhtdemo.bbs.entity.UserEnt" keyProperty="id" useGeneratedKeys="true">
+		insert into users(users,password,email)
+		values(#{user},#{password},#{email})
+	</insert>
+	<select id="checkEmail" resultType="xyz.zhtdemo.bbs.entity.UserEnt">
+		select id from users where
+		email=#{email}
+	</select>
+	<select id="getUserList" resultType="xyz.zhtdemo.bbs.entity.UserEnt">
+		select usr.id id,usr.users user,usr.password password,usr.email
+		email,portrait portrait,gid gid,agid agid from users usr
+	</select>
+	<select id="getUserById" resultType="xyz.zhtdemo.bbs.entity.UserEnt">
+		select usr.id id,usr.users
+		user,usr.email email,portrait portrait,gid gid,agid agid from users usr where id=#{id}
+	</select>
+	<insert id="insertUserSignInInfo">
+		insert into `user_sign_in_info` (`userid`,
+		`register_time`, `register_ip`, `last_sign_in_time`,
+		`last_sign_in_ip`) values (#{userid}, now(), #{ip}, now(), #{ip})
+	</insert>
+	<update id="updateUserSignInInfo">
+		update `user_sign_in_info` set `last_sign_in_time`=now(),
+		`last_sign_in_ip`=#{ip} where userid=#{userid}
+	</update>
+</mapper>

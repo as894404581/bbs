@@ -1,0 +1,95 @@
+input[type="text"],input[type="password"]{
+	border:solid 1px black;
+}
+body{
+background-color: #ebebeb;
+}
+
+#logo{
+	border:1px solid black
+}
+a{
+	text-decoration:none;
+	color: black;
+}
+
+#getpass{
+	font-size: 15px;
+}
+#all{
+	text-align: center;
+	width: 500px;
+	height: 500px;
+	margin: auto;
+}
+#all .login,.register{
+	width: 400px;
+	
+	margin: auto;
+	font-size:20px ;
+	border:1px solid black
+}
+#all .register{
+	display: none;
+	
+}
+#all .login input[type="text"],input[type="password"]  {
+	font-size:20px ;
+	top: 20px;
+	width: 250px;
+	height: 40px;
+}
+#all .register input[type="text"],input[type="password"]  {
+	font-size:20px ;
+	width: 250px;
+	top: 20px;
+	height: 40px;
+}
+#all table{
+	margin: auto;
+	margin-top:20px;
+}
+
+#all #xz ul li{
+	float: left;
+	width: 198px;
+	height: 30px;
+	list-style-type: none;
+	border: 1px solid black;	
+	line-height: 30px;
+	font-size: 20px;
+	
+}
+#all img{
+	margin-top:20px;
+}
+#xz ul{
+	margin:0;
+	padding:0;
+}
+#all ul li:hover{
+	background-color: #ccc;
+	cursor: pointer; 
+}
+#xz{
+	position: aabsolute;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin: auto;
+	height: 30px;
+	width: 400px;
+}
+.cleck{
+	background-color: #ccc;
+}
+.a{
+	padding-left:30px;
+	padding-right: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px black solid;
+	
+}
+.a:hover{
+	background-color: #ccc;
+}

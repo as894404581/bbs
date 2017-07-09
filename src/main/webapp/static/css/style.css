@@ -1,0 +1,95 @@
+
+
+.wysiwyg-editor {
+  display: block;
+ box-sizing: border-box;
+}
+.heading-ul{
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+}
+.heading-ul li{
+	list-style-type: none;
+	text-align: center;
+	cursor:pointer;
+	line-height: 30px;
+	float: left;
+	position: relative;
+	border: 1px solid #CCCCCC;
+	
+}
+.wysiwyg-controls {
+	box-sizing: border-box;
+  display: block;
+  width: 100%;
+  height: 35px;
+  border: 1px solid #c2cacf;
+  border-bottom: none;
+  border-radius: 3px 3px 0 0;
+  background: #fff;
+}
+.wysiwyg-controls a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  vertical-align: top;
+  line-height: 38px;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #adb5b9;
+}
+.wysiwyg-controls [data-role="bold"] {
+  font-weight: bold;
+}
+.wysiwyg-controls [data-role="italic"] {
+  font-style: italic;
+}
+.wysiwyg-controls [data-role="underline"] {
+  text-decoration: underline;
+}
+
+[class^="menu"], [class^="menu"]:before, [class^="menu"]:after {
+  position: relative;
+  top: 48%;
+  display: block;
+  width: 65%;
+  height: 2px;
+  margin: 0 auto;
+  background: #adb5b9;
+}
+[class^="menu"]:before {
+  content: '';
+  top: -5px;
+  width: 80%;
+}
+[class^="menu"]:after {
+  content: '';
+  top: 3px;
+  width: 80%;
+}
+
+.menu-left:before, .menu-left:after {
+  margin-right: 4px;
+}
+
+.menu-right:before, .menu-right:after {
+  margin-left: 4px;
+}
+
+.wysiwyg-content {
+	box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  padding: 12px;
+  resize: both;
+  overflow: auto;
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+  border: 1px solid #c2cacf;
+  border-radius: 0 0 3px 3px;
+  background: #F2F4F6;
+  height:300px;
+}

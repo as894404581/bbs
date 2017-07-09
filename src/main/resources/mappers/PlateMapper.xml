@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="xyz.zhtdemo.bbs.dao.PlateDao">
+	<select id="getPlate" resultType="xyz.zhtdemo.bbs.entity.PlateEnt">
+		select
+		id,pup,ptype,last_issue,plate_name,img_url,post_count,reply_count from
+		plate
+	</select>
+	<select id="getPlateById" resultType="xyz.zhtdemo.bbs.entity.PlateEnt">
+		select
+		id,pup,ptype,last_issue,plate_name,img_url,post_count,reply_count from
+		plate
+		where id=#{id}
+	</select>
+	<select id="getListPlateEnt" resultType="xyz.zhtdemo.bbs.entity.PlateEnt">
+		select
+		id,pup,ptype,plate_name,last_issue,img_url,post_count,reply_count,access_rights
+		from plate
+	</select>
+	<update id="updatePlateInfo">
+		update `plate` set `last_issue`=#{last_issue} where
+		`id`=#{id}
+	</update>
+	<update id="post_countUp">
+		update plate set post_count=post_count+1 where id =
+		#{fid}
+	</update>
+	<update id="reply_countUp">
+		update plate set reply_count=reply_count+1 where id =
+		#{fid}
+	</update>
+	<update id="updatePlateById" parameterType="xyz.zhtdemo.bbs.entity.PlateEnt">
+		update `plate`
+		set
+		<trim suffixOverrides=",">
+			<if test="plate_name!=null">
+				`plate_name`=#{plate_name},
+			</if>
+			<if test="last_issue!=null">
+				`last_issue`=#{last_issue},
+			</if>
+			<if test="img_url!=null">
+				`img_url`=#{img_url},
+			</if>
+			<if test="post_count!=null">
+
+				`post_count`=#{post_count},
+			</if>
+			<if test="reply_count!=null">
+				`reply_count`=#{reply_count},
+			</if>
+			<if test="access_rights!=null">
+				`access_rights`=#{access_rights}
+			</if>
+		</trim>
+		where `id`=#{id};
+
+	</update>
+</mapper>

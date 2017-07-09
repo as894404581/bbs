@@ -1,0 +1,100 @@
+#head {
+	
+	border: 1px solid #ecf5f7;
+}
+
+.user{
+	text-align: right;
+	height: 30px;
+	margin: 0px;
+	
+}
+#userimg{
+	position: relative;
+	float: right;
+}
+#headlog{
+	
+	height: 50px;
+}
+
+.logo{
+	position: absolute;
+	margin: 0px;
+	z-index: 1;
+}
+#head ul li {
+	width: 150px;
+	height: 30px;
+	float: left;
+	border: 1px solid #CCCCCC;
+	list-style-type: none;
+	text-align: center;
+	line-height: 30px
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+
+body{
+	margin: auto;
+	width: 80%;
+	min-width:800px;
+	
+}
+
+#head #log {
+	position: relative;
+	float: right;
+	right: 10px;
+}
+
+#head ul li:hover {
+	cursor: pointer;
+	background-color: #CCCCCC;
+}
+
+
+
+#dow {
+	margin-top: 0px;
+}
+
+#head ul {
+	padding-left: 0px;
+	margin-top: 8px;
+}
+
+#pilot {
+	clear: both;
+	height: 32px;
+	margin-top: 40px;
+}
+
+#search input[type="text"] {
+	width: 350px;
+	height: 25px;
+}
+
+#search {
+	width: 100%;
+	height: 40px;
+	padding-top: 10px;
+	background-color: #ecf5f7;
+}
+.searchA{
+	border: 1px solid #CCCCCC;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 2px;
+	padding-bottom: 5px;
+	height: 40px;
+	
+	margin: 1px;
+}
+.searchA:hover{
+	background-color: #CCCCCC;
+}

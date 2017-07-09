@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="xyz.zhtdemo.bbs.dao.User_CountDao">
+	<select id="getUserIntegralByUserId" resultType="xyz.zhtdemo.bbs.entity.User_CountEnt">
+		select user_id
+		,total_integral
+		,integral1
+		,integral2
+		,integral3
+		,integral4
+		,integral5
+		,integral6
+		,integral7
+		,integral8
+		,post_count
+		,rep_count
+		from user_count
+		where user_id=#{userId}
+	</select>
+	<insert id="insertUserIntegral" parameterType="xyz.zhtdemo.bbs.entity.User_CountEnt">
+		insert into `user_count` (
+
+		<trim suffixOverrides=",">
+			`user_id`,
+			<if test="integral1!=null">
+				`integral1`,
+			</if>
+			<if test="integral2!=null">
+				`integral2`,
+			</if>
+			<if test="integral3!=null">
+				`integral3`,
+			</if>
+			<if test="integral4!=null">
+				`integral4`,
+			</if>
+			<if test="integral5!=null">
+				`integral5`,
+			</if>
+			<if test="integral6!=null">
+				`integral6`,
+			</if>
+			<if test="integral7!=null">
+				`integral7`,
+			</if>
+			<if test="integral8!=null">
+				`integral8`,
+			</if>
+			<if test="total_integral!=null">
+				`total_integral`,
+			</if>
+			<if test="post_count!=null">
+				`post_count`,
+			</if>
+			<if test="rep_count!=null">
+				`rep_count`
+			</if>
+		</trim>
+		)
+		values (
+
+		<trim suffixOverrides=",">
+			#{user_id},
+			<if test="total_integral!=null">
+				#{total_integral},
+			</if>
+			<if test="integral1!=null">
+				#{integral1},
+			</if>
+			<if test="integral2!=null">
+				#{integral2},
+			</if>
+			<if test="integral3!=null">
+				#{integral3},
+			</if>
+			<if test="integral4!=null">
+				#{integral4},
+			</if>
+			<if test="integral5!=null">
+				#{integral5},
+			</if>
+			<if test="integral6!=null">
+				#{integral6},
+			</if>
+			<if test="integral7!=null">
+				#{integral7},
+			</if>
+			<if test="integral8!=null">
+				#{integral8},
+			</if>
+			<if test="post_count!=null">
+				#{post_count},
+			</if>
+			<if test="rep_count!=null">
+				#{rep_count}
+			</if>
+		</trim>
+
+		)
+	</insert>
+	<update id="updateUserGroup" parameterType="xyz.zhtdemo.bbs.entity.UserEnt">
+		update `users` set
+		<trim suffixOverrides=",">
+			<if test="gid!=null">
+				`gid`=#{gid},
+			</if>
+			<if test="agid">
+				`agid`=#{agid}
+			</if>
+		</trim>
+		where `id`=#{id}
+	</update>
+	<update id="updateUser_Count" parameterType="xyz.zhtdemo.bbs.entity.User_CountEnt">
+		UPDATE `user_count`
+		SET
+		<trim suffixOverrides=",">
+			<if test="total_integral!=null">
+				`total_integral`=#{total_integral},
+			</if>
+			<if test="integral1!=null">
+				`integral1`=#{integral1},
+			</if>
+			<if test="integral2!=null">
+				`integral2`=#{integral2},
+			</if>
+			<if test="integral3!=null">
+				`integral3`=#{integral3},
+			</if>
+			<if test="integral4!=null">
+				`integral4`=#{integral4},
+			</if>
+			<if test="integral5!=null">
+				`integral5`=#{integral5},
+			</if>
+			<if test="integral6!=null">
+				`integral6`=#{integral6},
+			</if>
+			<if test="integral7!=null">
+				`integral7`=#{integral7},
+			</if>
+			<if test="integral8!=null">
+				`integral8`=#{integral8},
+			</if>
+			<if test="post_count!=null">
+			`post_count`=#{post_count},
+			</if>
+			<if test="rep_count!=null">
+			`rep_count`=#{rep_count}
+			</if>
+
+		</trim>
+		WHERE
+		`user_id`=#{user_id};
+
+	</update>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="xyz.zhtdemo.bbs.dao.EmailDao">
+	
+	<update id="checkEmail">
+		update email set email_check='true'
+		where uid=(select
+		uid from (select uid from email where
+		email_url=#{emailurl}) xx)
+	</update>
+	<select id="selectForPassByUser" resultType="xyz.zhtdemo.bbs.entity.Look_forpassEnt"
+		parameterType="string">
+		select id from look_forpass where users_id=#{usersid}
+	</select>
+	<insert id="insertLook_forpass" >
+		insert
+		into
+		look_forpass(users_id,email_check,email_url)
+		values(#{userid},'false',#{md5})
+	</insert>
+
+	<select id="selectPassCheckEmail" resultType="xyz.zhtdemo.bbs.entity.Look_forpassEnt">
+		select users_id from
+		look_forpass where email_url=#{email_url} and email_check='false'
+	</select>
+	<update id="updatePass" parameterType="xyz.zhtdemo.bbs.entity.UserEnt">
+		update users set
+		password=#{password} where id=#{userid}
+	</update>
+	<update id="updateLook_fropassTrue">
+		update look_forpass set email_check='true' where id=(select id from (select id from look_forpass where users_id=#{userid} and email_url=#{email_url} ) xx)
+	</update>
+	
+	<insert id="insertEmail">
+		insert into
+		email(uid,email,email_check,email_url) values(#{uid},#{email},'false',#{md5})
+	</insert>
+	<select id="geEntByUid" resultType="xyz.zhtdemo.bbs.entity.EmailEnt">
+		select uid,email,email_check,email_url from email where
+		uid=#{uid}
+	</select>
+</mapper>

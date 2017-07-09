@@ -1,0 +1,56 @@
+
+
+#LogoImg {
+	margin-top: 10px;
+	border: 1px solid #CCCCCC;
+}
+
+
+
+.statistics{
+	font-size: 15px;
+	margin-top: 6px;
+	margin-bottom: 2px;
+}
+
+
+a {
+	text-decoration: none;
+	color: black;
+	
+}
+
+
+
+#info table {
+	margin: auto;
+	border-collapse: collapse;
+}
+
+#info table tr {
+	height: 50px;
+	width: 100%;
+	border-bottom: 1px #CCCCCC dashed;
+	border-top: 1px #CCCCCC dashed;
+	
+	
+}
+
+#info table tr td {
+	height: 50px;
+}
+
+#plateImg {
+	margin: auto;
+}
+#infoAll{
+	border: 1px solid #CCCCCC;
+	width:100%;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.c{
+	color: #999999;
+}

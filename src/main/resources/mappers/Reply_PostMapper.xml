@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="xyz.zhtdemo.bbs.dao.Reply_PostDao">
+	<!-- 插入回复信息 -->
+	<insert id="insertReply" parameterType="xyz.zhtdemo.bbs.entity.Reply_PostEnt" keyProperty="id" useGeneratedKeys="true">
+		insert into
+		`reply_post` (`post_id`, `content`, `reply_userid`,`issue_time`) values
+		(#{post_id}, #{content}, #{reply_userid},#{issue_time})
+	</insert>
+	<!-- 根据帖子id分页查询回复 -->
+	<select id="getReply_Post" resultType="xyz.zhtdemo.bbs.entity.Reply_PostEnt">
+		select 
+		r.id as id,r.post_id as post_id,r.content as content,r.issue_time as issue_time,
+		u.users as `ue.user`,u.portrait as `ue.portrait` 
+		from reply_post r,users u 
+		where r.reply_userid=u.id and post_id=#{vid} limit #{start},10
+	</select>
+	<!-- 根据帖子id获取回复贴总数 -->
+	<select id="getReplyPageCountByVid" resultType="int" parameterType="int">
+		select count(id) from reply_post r where post_id=#{vid}
+	</select>
+	<!-- 根据回复id获取回帖详细信息 -->
+	<select id="getReplyInfoByVid" resultType="xyz.zhtdemo.bbs.entity.Reply_PostEnt">
+		select id,post_id,content,reply_userid,issue_time from reply_post where id=#{rid}
+	</select>
+	<update id="updateReply">
+		update `reply_post` set `content`=#{content} where `id`=#{id} and post_id=#{post_id}
+	</update>
+</mapper>

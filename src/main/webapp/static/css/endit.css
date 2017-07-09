@@ -1,0 +1,77 @@
+#endit {
+	position: relative;
+	
+	height: 500px;
+	margin: auto;
+	resize: both;
+	overflow: auto;
+	border: 1px #CCCCCC solid;
+}
+.ImglistBox{
+	position: relative;
+	width: 195px;
+	overflow: auto;
+	text-align: center;
+	
+	float: left;
+	
+	padding: 0px;
+	margin: 0px;
+}
+.filename{
+	margin: auto;
+}
+.a-upload {
+	padding: 4px 10px;
+	
+	line-height: 20px;
+	position: relative;
+	cursor: pointer;
+	color: #888;
+	background: #fafafa;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	overflow: hidden;
+	display: inline-block;
+
+}
+
+.a-upload input {
+	position: absolute;
+	font-size: 50px;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	filter: alpha(opacity=0);
+	cursor: pointer
+}
+
+.a-upload:hover {
+	color: #444;
+	background: #eee;
+	border-color: #ccc;
+	text-decoration: none
+}
+
+#imageList {
+	max-height: 300px;
+	resize: both;
+	overflow: auto;
+	border: 1px #CCCCCC solid;
+	margin: auto;
+	
+}
+
+
+.listImgMax {
+	margin: 8px;
+	width: 80%;
+	
+	border: 1px solid #CCCCCC;
+	cursor: pointer;
+}
+
+#pSetting{
+	border:1px solid #CCC;
+	line-height: 35px;
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="xyz.zhtdemo.bbs.dao.PostDao">
+	<select id="getPostList" resultType="xyz.zhtdemo.bbs.entity.PostEnt">
+		select
+		p.id,p.title,p.issue_time,u.users as `author.user`,lu.users as `last_ue.user`,p.see_count,p.reply_count,p.last_reply_issue_time ,p.price,p.access_rights
+		from post as p,users as u,users as lu
+		where p.issue_userid=u.id and lu.id=p.last_reply_uid and p.plate_id=#{id} 
+		order by issue_time desc limit #{page1},15
+
+	</select>
+	<select id="getPostById" resultType="xyz.zhtdemo.bbs.entity.PostEnt">
+		select
+		id,title,content,issue_time,issue_userid,plate_id,price,access_rights,see_count,reply_count from
+		post where id=#{id}
+	</select>
+	<update id="addSee_Count">
+		update post set see_count=see_count+1 where id=#{id}
+	</update>
+	<insert id="addPost" parameterType="xyz.zhtdemo.bbs.entity.PostEnt" keyProperty="id" useGeneratedKeys="true">
+		insert into `post`
+		(
+		`title`, `content`, `issue_userid`, `plate_id`, `see_count`,`issue_time`,`reply_count`,`last_reply_uid`,`last_reply_issue_time`,`price`,`access_rights`) values
+		(#{title}, #{content}, #{issue_userid}, #{plate_id}, #{see_count},#{issue_time},0,#{issue_userid},#{issue_time},#{price},#{access_rights})
+	</insert>
+	<select id="search" resultType="xyz.zhtdemo.bbs.entity.SearchEnt">
+		select p.id as vid,p.title as
+		title,p.issue_time as issue_time,u.users as action,p.see_count as
+		see_count,p.plate_id as fid 
+        from post p,users u where p.issue_userid=u.id and p.title
+		like #{name} order by p.issue_time desc limit #{page1},14
+	</select>
+	<select id="searchCount" resultType="int">
+		select count(p.id) from post p,users u where p.issue_userid=u.id and
+		p.title like #{name}
+
+	</select>
+	<select id="getUserByVid" resultType="xyz.zhtdemo.bbs.entity.PostEnt">
+		select issue_userid from post where id=#{vid}
+	</select>
+	<update id="updatePost" parameterType="xyz.zhtdemo.bbs.entity.PostEnt">
+		update `post` set 
+		<trim suffixOverrides=",">
+		<if test="plate_id!=null">
+		`plate_id`=#{plate_id},
+		</if>
+		<if test="title!=null">
+		`title`=#{title},
+		</if>
+		<if test="content!=null">
+		`content`=#{content},
+		</if>
+		<if test="issue_userid!=null">
+		`issue_userid`=#{issue_userid},
+		</if>
+		<if test="see_count!=null">
+		`see_count`=#{see_count},
+		</if>
+		<if test="reply_count!=null">
+		`reply_count`=#{reply_count},
+		</if>
+		<if test="issue_time!=null">
+		`issue_time`=#{issue_time},
+		</if>
+		<if test="last_reply_uid!=null">
+		`last_reply_uid`=#{last_reply_uid},
+		</if>
+		<if test="last_reply_issue_time!=null">
+		`last_reply_issue_time`=#{last_reply_issue_time},
+		</if>
+		<if test="price!=null">
+		`price`=#{price},
+		</if>
+		<if test="access_rights!=null">
+		`access_rights`=#{access_rights},
+		</if>
+		</trim>
+		where 
+		`id`=#{id}
+	</update>
+	<update id="updatePostReplyCount">
+		update `post` set `reply_count`=reply_count+1 where `id`=#{vid};
+	</update>
+	
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlrewrite>
+	<rule>
+		<from>index.html</from>
+		<to>index.do</to>
+	</rule>
+	<rule>
+		<from>forum-([0-9]+)-([0-9]+).html</from>
+		<to>forum.go?fid=$1&amp;page=$2</to>
+	</rule>
+	<rule>
+		<from>thread-([0-9]+)-([0-9]+)-([0-9+]).html</from>
+		<to>viewthread.go?vid=$1&amp;fid=$2&amp;page=$3</to>
+	</rule>
+</urlrewrite>

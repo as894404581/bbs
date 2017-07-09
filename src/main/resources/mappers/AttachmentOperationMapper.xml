@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="xyz.zhtdemo.bbs.dao.AttachmentOperationDao">
+	<insert id="insertAttachment_Info" parameterType="xyz.zhtdemo.bbs.entity.Attachment_InfoEnt">
+		insert into
+		`attachment_info` (`aid`,`attachment_url`, `uid`, `pid`,`rid`,
+		`attachment_formerly`,
+		`attachment_size`,`upload_time`,`a_type`,`f_type`
+		<trim suffixOverrides=",">
+		<if test="access_rights!=null">
+		,`access_rights`
+		</if>
+		<if test="price!=null">
+		,`price`
+		</if>
+		</trim>
+		)
+		values
+		(#{aid},#{attachment_url}, #{uid}, #{pid},#{rid},
+		#{attachment_formerly},
+		#{attachment_size},#{upload_time},#{a_type},#{f_type}
+		<trim suffixOverrides=",">
+		<if test="access_rights!=null">
+		,#{access_rights}
+		</if>
+		<if test="price!=null">
+		,#{price}
+		</if>
+		</trim>
+		)
+
+	</insert>
+	<delete id="deleteAttachment">
+		delete from attachment_info where
+		aid =#{aid}
+	</delete>
+
+	<select id="getAttachment_InfoEnt" resultType="xyz.zhtdemo.bbs.entity.Attachment_InfoEnt">
+		select
+		<trim suffixOverrides=",">
+			`aid`,
+			<if test="f_type!=null">
+				`attachment_url`, `uid`, `pid`,`rid`,
+				`attachment_formerly`,
+				`attachment_size`,`upload_time`,`a_type`,`f_type`,`price`,`access_rights`
+			</if>
+		</trim>
+		from attachment_info
+		where
+		1=1
+
+		<if test="aid!=null">
+			and aid=#{aid}
+		</if>
+		<if test="f_type!=null">
+			and f_type=#{f_type}
+		</if>
+		<if test="pid!=null">
+			and pid=#{pid}
+		</if>
+		<if test="rid!=null">
+			and rid=#{rid}
+		</if>
+
+
+	</select>
+	<insert id="insertUnusendAttachment" useGeneratedKeys="true"
+		keyProperty="aid" parameterType="xyz.zhtdemo.bbs.entity.Attachment_UnusedEnt">
+		insert into `attachment_unused`
+		(`uid`, `upload_time`, `attachment_formerly`, `attachment_size`,
+		`attachment_url`,`a_type`
+		<trim suffixOverrides=",">
+		<if test="access_rights!=null">
+		,`access_rights`
+		</if>
+		<if test="price!=null">
+		,`price`
+		</if>
+		</trim>
+		)
+		values (#{uid}, #{upload_time},
+		#{attachment_formerly}, #{attachment_size},
+		#{attachment_url},#{a_type}
+		<trim suffixOverrides=",">
+		<if test="access_rights!=null">
+		,#{access_rights}
+		</if>
+		<if test="price!=null">
+		,#{price}
+		</if>
+		</trim>
+		)
+	</insert>
+	<select id="getAueByAid" resultType="xyz.zhtdemo.bbs.entity.Attachment_UnusedEnt">
+		select aid, uid,
+		upload_time, attachment_formerly, attachment_size,
+		attachment_url,a_type,access_rights,price
+		from `attachment_unused`
+		where aid=#{aid}
+	</select>
+	<delete id="deleteAueByAid">
+		delete from `attachment_unused` where `aid`=#{aid}
+	</delete>
+	<select id="getAieByAid" resultType="xyz.zhtdemo.bbs.entity.Attachment_InfoEnt">
+		SELECT aid, uid, pid,
+		attachment_url, attachment_formerly, attachment_size, upload_time,
+		f_type, a_type,access_rights,price
+		FROM `attachment_info` WHERE aid=#{aid}
+
+	</select>
+</mapper>

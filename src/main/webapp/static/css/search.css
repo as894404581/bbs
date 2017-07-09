@@ -1,0 +1,69 @@
+#se li {
+	width: 760px;
+	height: 80px;
+	list-style: none;
+	margin-top: 10px;
+}
+
+#se {
+	margin: 0px;
+	padding: 0px;
+}
+
+#se li h3 {
+	margin: 0px;
+}
+
+#se li p {
+	margin: 0px;
+	font-size: 15px;
+}
+
+.lip {
+	color: #CCCCCC;
+}
+
+.paging {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+	margin: 0px;
+	height: 25px;
+	padding-left:5px ;
+	padding-right: 5px;
+	border: 1px solid #ccc;
+	line-height: 25px;
+}
+
+.paging:hover {
+	border: 1px solid #369;
+}
+
+.checkpaging {
+	display: inline-block;
+	width: 20px;
+	background-color: #ccc;
+	text-align: center;
+	margin: 0px;
+	height: 25px;
+	border: 1px solid #ccc;
+	padding-left:5px ;
+	padding-right: 5px;
+	line-height: 25px;
+}
+
+#paging {
+	display: inline-block;
+	margin-right: 0px;
+	width: 100%;
+	margin: 5px
+}
+
+.UpGobackPageButton {
+	text-align: center;
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	border: 1px solid #ccc;
+	line-height: 25px;
+}
