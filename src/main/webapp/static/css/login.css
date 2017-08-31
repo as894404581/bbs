@@ -72,7 +72,7 @@ a{
 	cursor: pointer; 
 }
 #xz{
-	position: aabsolute;
+	position: absolute;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	margin: auto;
@@ -88,7 +88,6 @@ a{
 	padding-top: 10px;
 	padding-bottom: 10px;
 	border: 1px black solid;
-	
 }
 .a:hover{
 	background-color: #ccc;

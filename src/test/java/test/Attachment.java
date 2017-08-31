@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import xyz.zhtdemo.bbs.dao.AttachmentOperationDao;
-import xyz.zhtdemo.bbs.entity.Attachment_InfoEnt;
+import xyz.zhtdemo.bbs.enums.ArticleTypeEnum;
 
 public class Attachment {
 	ClassPathXmlApplicationContext ctx;
@@ -19,7 +19,7 @@ public class Attachment {
 	
 	@Test
 	public void test(){
-		System.out.println(ad.getAttachment_InfoEnt(null, 154, null, Attachment_InfoEnt.TYPE_POST));
+		System.out.println(ad.getAttachment_InfoEnt(null, 154, null, ArticleTypeEnum.post));
 	}
 	@Test
 	public void test1(){

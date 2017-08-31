@@ -18,6 +18,7 @@ import xyz.zhtdemo.bbs.entity.UserEnt;
 import xyz.zhtdemo.bbs.entity.User_GroupEnt;
 import xyz.zhtdemo.bbs.error.ParameterException;
 import xyz.zhtdemo.bbs.error.SessionException;
+import xyz.zhtdemo.bbs.handler.CeditHandlerInterface;
 import xyz.zhtdemo.bbs.inter.AttachmentService;
 import xyz.zhtdemo.bbs.inter.PlateService;
 import xyz.zhtdemo.bbs.inter.PostService;
@@ -64,6 +65,7 @@ public class ForumServlet {
 	 * @param request
 	 * @return
 	 */
+	@CeditHandlerInterface
 	@RequestMapping("cedit.go")
 	public String Post(HttpServletRequest req,ModelMap map,HttpSession session) {
 		String type=req.getParameter("type");
@@ -87,8 +89,13 @@ public class ForumServlet {
 				map.put("POST", pe);
 			}
 			for (Integer key : ugm.keySet()) {
-				if(ugm.get(key).getAccess_rights()==pe.getAccess_rights()){
-					map.put("ACCESS_NAME", ugm.get(key).getGname());
+				
+				if (pe.getAccess_rights()==1) {
+					map.put("ACCESS_INDEX", 0);
+					break;
+				}
+				if(ugm.get(key).getAccess_rights().intValue()==pe.getAccess_rights().intValue()){
+					map.put("ACCESS_INDEX", ugm.get(key).getGid());
 					break;
 				}
 				

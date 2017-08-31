@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import xyz.zhtdemo.bbs.dao.AttachmentOperationDao;
 import xyz.zhtdemo.bbs.entity.Attachment_InfoEnt;
 import xyz.zhtdemo.bbs.entity.Attachment_UnusedEnt;
+import xyz.zhtdemo.bbs.enums.ArticleTypeEnum;
 import xyz.zhtdemo.bbs.inter.AttachmentService;
 
 @Service("attachmentService")
@@ -35,7 +36,7 @@ public class AttachmentServiceImpl implements AttachmentService{
 		
 	}
 
-	public List<Attachment_InfoEnt> getAttachmentList(Integer pid,String type,Integer rid) {
+	public List<Attachment_InfoEnt> getAttachmentList(Integer pid,ArticleTypeEnum type,Integer rid) {
 		
 		return iod.getAttachment_InfoEnt(null, pid, rid, type);
 	}

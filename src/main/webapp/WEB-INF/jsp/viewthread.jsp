@@ -62,7 +62,7 @@ var count=parseInt(eval(((${VIEW.reply_count} - 1) / 9) + 1));
 						</td>
 						<td style="width: 100%; height: 100%;" align="left" valign="top">
 							<div class="pi">
-								<div class="authi">发表于:<span class="time">${VIEW['issue_time']}</span></div>
+								<div class="authi">发表于:<span class="time">t${VIEW['issue_time']}</span></div>
 							</div> 
 							<span>
 								${VIEW['content'] }
@@ -102,7 +102,7 @@ var count=parseInt(eval(((${VIEW.reply_count} - 1) / 9) + 1));
 						</td>
 						<td style="width: 100%; height: 100%;" align="left" valign="top">
 							<div class="pi">
-								<div class="authi">回复于:<span class="time">${r['issue_time']}</span></div>
+								<div class="authi">回复于:<span class="time">t${r['issue_time']}</span></div>
 							</div> <span>${r['content'] }</span> 
 						</td>
 					</tr>

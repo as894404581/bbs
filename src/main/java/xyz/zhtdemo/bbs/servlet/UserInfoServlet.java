@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import xyz.zhtdemo.bbs.enums.UserSettingEnum;
 import xyz.zhtdemo.bbs.error.ParameterException;
 
 @Controller
@@ -16,14 +17,14 @@ public class UserInfoServlet {
 	}
 
 	@RequestMapping("loadUserSetting.do")
-	public String getInfo(String mods,ModelMap map) {
+	public String getInfo(UserSettingEnum mods, ModelMap map) {
 		if (mods == null)
 			throw new ParameterException("参数错误!");
 		switch (mods) {
-			case "info":
-			case "integral":
-			case "message":
-			case "group":
+			case info:
+			case integral:
+			case message:
+			case group:
 				break;
 			default:
 				throw new ParameterException("参数错误!");

@@ -181,12 +181,12 @@ public class Util {
 	 */
 	public static String toUTF8(String str) {
 		try {
-			String[] encodes = {"UTF-8","ISO-8859-1","GBK"};
+			String[] encodes = {"ISO-8859-1","UTF-8"};
 			for (String encode : encodes) {
 				if (str.equals(new String(str.getBytes(encode), encode))) 
 					return new String(str.getBytes(encode),"UTF-8");
-				else if (str.equals(new String(str.getBytes("UTF-8"), "UTF-8")))
-					return str;
+//				else if (str.equals(new String(str.getBytes("UTF-8"), "UTF-8")))
+//					return str;
 			}
 			return str;
 		} catch (UnsupportedEncodingException e) {

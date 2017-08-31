@@ -105,8 +105,8 @@ function ajaxPage() {
 				for(var i = 0; i < json.data.length; i++) {
 					var trdata = '<tr><td style="text-align:center" width="5%" >'
 					+'<a href="viewthread.go?vid=' + json.data[i].id + '&fid=' + fid + '&page=1" target="_blank"> <img src="static/image/ISSUE.png" /></a></td><td width="55%">'
-					+'<a href="viewthread.go?vid=' + json.data[i].id + '&fid=' + fid + '&page=1">' + json.data[i].title + '</a></td><td width="15%"><span>' + json.data[i].author.user + '</span><br/><span class="time">'+formats(json.data[i].issue_time)+'</span></td><td width="15%"><em>' + json.data[i].reply_count + '</em><br/><em class="time">'+json.data[i].see_count+'</em></td>'
-					+'<td width="15%"><em>' + json.data[i].last_ue.user + '</em><br/><em class="time">'+formats(json.data[i].last_reply_issue_time)+'</em></td></tr>';
+					+'<a href="viewthread.go?vid=' + json.data[i].id + '&fid=' + fid + '&page=1">' + json.data[i].title + '</a></td><td width="15%"><span>' + json.data[i].author.user + '</span><br/><span class="time">'+formats(json.data[i].issue_time)+'</span></td><td width="10%"><em>' + json.data[i].reply_count + '</em><br/><em class="time">'+json.data[i].see_count+'</em></td>'
+					+'<td width="20%"><em>' + json.data[i].last_ue.user + '</em><br/><em class="time">'+formats(json.data[i].last_reply_issue_time)+'</em></td></tr>';
 					tbody.append(trdata);
 				}
 				if(count == 1) {

@@ -2,24 +2,26 @@ package xyz.zhtdemo.bbs.entity;
 
 import java.io.Serializable;
 
+import xyz.zhtdemo.bbs.enums.AttachmentTypeEnum;
+
 public class Attachment_UnusedEnt implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	public final static String TYPE_IMG="img";
-	public final static String TYPE_DOCUMENT="document";
+
 	private Integer aid;
 	private Integer uid;
 	private Long upload_time;
 	private String attachment_formerly;
 	private Long attachment_size;
 	private String attachment_url;
-	private String a_type;
+	private AttachmentTypeEnum a_type;
 	private Integer access_rights;
 	private Integer price;
 
 
 	public Attachment_UnusedEnt(Integer aid, Integer uid, Long upload_time, String attachment_formerly,
-			Long attachment_size, String attachment_url, String a_type, Integer access_rights, Integer price) {
+			Long attachment_size, String attachment_url, AttachmentTypeEnum a_type, Integer access_rights,
+			Integer price) {
 		super();
 		this.aid = aid;
 		this.uid = uid;
@@ -129,12 +131,12 @@ public class Attachment_UnusedEnt implements Serializable{
 	}
 
 
-	public String getA_type() {
+	public AttachmentTypeEnum getA_type() {
 		return a_type;
 	}
 
 
-	public void setA_type(String a_type) {
+	public void setA_type(AttachmentTypeEnum a_type) {
 		this.a_type = a_type;
 	}
 
@@ -157,6 +159,7 @@ public class Attachment_UnusedEnt implements Serializable{
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
+
 
 
 	public Attachment_UnusedEnt() {

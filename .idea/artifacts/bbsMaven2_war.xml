@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="bbsMaven2:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="bbsMaven2-0.2.16-Alpha.war">
+      <element id="artifact" artifact-name="bbsMaven2:war exploded" />
+    </root>
+  </artifact>
+</component>

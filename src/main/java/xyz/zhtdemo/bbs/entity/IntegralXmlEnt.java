@@ -80,4 +80,5 @@ public class IntegralXmlEnt implements Serializable{
 	public IntegralXmlEnt() {
 		
 	}
+
 }

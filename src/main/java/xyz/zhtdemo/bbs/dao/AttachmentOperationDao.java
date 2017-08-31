@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import xyz.zhtdemo.bbs.entity.Attachment_InfoEnt;
 import xyz.zhtdemo.bbs.entity.Attachment_UnusedEnt;
+import xyz.zhtdemo.bbs.enums.ArticleTypeEnum;
 
 public interface AttachmentOperationDao {
 	/**
@@ -28,7 +29,7 @@ public interface AttachmentOperationDao {
 	 * @param id 附件id
 	 * @return
 	 */
-	public List<Attachment_InfoEnt> getAttachment_InfoEnt(@Param("aid")Integer aid,@Param("pid")Integer pid,@Param("rid")Integer rid,@Param("f_type")String f_type);
+	public List<Attachment_InfoEnt> getAttachment_InfoEnt(@Param("aid")Integer aid,@Param("pid")Integer pid,@Param("rid")Integer rid,@Param("f_type")ArticleTypeEnum f_type);
 	
 	public int insertUnusendAttachment(Attachment_UnusedEnt aue);
 	

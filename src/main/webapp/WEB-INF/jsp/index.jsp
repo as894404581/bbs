@@ -40,7 +40,7 @@
 									<td width="5%" align="center"><img id="hpImg" src="${pl['img_url'] }" width="30" height="30" /></td>
 									<td width="70%"><a href="forum.go?fid=${pl['id'] }&page=1">${pl['plate_name'] }</a></td>
 									<td width="5%">${pl['post_count'] }/<em class="c">${pl['reply_count'] }</em></td>
-									<td width="20%" >最后发表:<span class="time">${pl['last_issue'] }</span></td>
+									<td width="20%" >最后发表:<span class="time">t${pl['last_issue'] }</span></td>
 								</tr>
 							</c:forEach>
 						</table>

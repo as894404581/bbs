@@ -1,18 +1,18 @@
 package xyz.zhtdemo.bbs.util;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
-
 import xyz.zhtdemo.bbs.entity.Attachment_InfoEnt;
 import xyz.zhtdemo.bbs.entity.Attachment_UnusedEnt;
 import xyz.zhtdemo.bbs.entity.PostEnt;
 import xyz.zhtdemo.bbs.entity.Reply_PostEnt;
 import xyz.zhtdemo.bbs.entity.TardelogEnt;
+import xyz.zhtdemo.bbs.enums.ArticleTypeEnum;
+import xyz.zhtdemo.bbs.enums.AttachmentTypeEnum;
 import xyz.zhtdemo.bbs.enums.T_typeEnum;
 import xyz.zhtdemo.bbs.enums.TradeTypeEnum;
 import xyz.zhtdemo.bbs.inter.AttachmentService;
@@ -24,11 +24,14 @@ import xyz.zhtdemo.bbs.inter.TardelogService;
  * @author zheng
  */
 @Component
+
 public class AttachmentUtil {
 	@Resource
 	AttachmentService as;
 	@Resource
 	TardelogService ts;
+
+
 	/**
 	 * 替换帖子内容中的标签模式 mode.EDIT:编辑模式,不替换document标签 mode.VIEW:显示模式,全部替换
 	 * 
@@ -52,6 +55,7 @@ public class AttachmentUtil {
 		if (a == null) {
 			return true;
 		}
+		
 		for (Integer aid : a) {
 			Attachment_UnusedEnt aue = as.getAueByAid(aid);
 			Attachment_InfoEnt aie = new Attachment_InfoEnt();
@@ -62,7 +66,7 @@ public class AttachmentUtil {
 			aie.setAttachment_formerly(aue.getAttachment_formerly());
 			aie.setAttachment_size(aue.getAttachment_size());
 			aie.setUpload_time(System.currentTimeMillis());
-			aie.setF_type(Attachment_InfoEnt.TYPE_POST);
+			aie.setF_type(ArticleTypeEnum.post);
 			aie.setA_type(aue.getA_type());
 			aie.setAccess_rights(aue.getAccess_rights());
 			aie.setPrice(aue.getPrice());
@@ -82,9 +86,8 @@ public class AttachmentUtil {
 	 * @return
 	 */
 	public boolean ReplaceRepAttachmentIn(Reply_PostEnt rpe, Integer[] a) {
-		if (a == null) {
+		if (a == null) 
 			return true;
-		}
 		for (Integer aid : a) {
 			Attachment_UnusedEnt aue = as.getAueByAid(aid);
 			Attachment_InfoEnt aie = new Attachment_InfoEnt();
@@ -96,7 +99,7 @@ public class AttachmentUtil {
 			aie.setAttachment_formerly(aue.getAttachment_formerly());
 			aie.setAttachment_size(aue.getAttachment_size());
 			aie.setUpload_time(System.currentTimeMillis());
-			aie.setF_type(Attachment_InfoEnt.TYPE_REP);
+			aie.setF_type(ArticleTypeEnum.rep);
 			aie.setA_type(aue.getA_type());
 			as.insertImgInfo(aie);
 			as.deleteAueByAid(aie.getAid());
@@ -118,9 +121,11 @@ public class AttachmentUtil {
 	 *            显示模式
 	 * @return
 	 */
-	public String ReplacePostAttachmentOut(int uid,String text, int vid, AttachmentUtil.mode mode) {
+	public String ReplacePostAttachmentOut(int uid, String text, int vid, AttachmentUtil.mode mode) {
 		text = Util.upBr(text);
-		text = ReplaceAttachmentLable(text, as.getAttachmentList(vid, Attachment_InfoEnt.TYPE_POST, null), mode,ts.getTardelogMap(new TardelogEnt(null, uid, vid, null, null, null, T_typeEnum.attachment, null, TradeTypeEnum.buy)));
+		text = ReplaceAttachmentLable(text, as.getAttachmentList(vid, ArticleTypeEnum.post, null), mode,
+				ts.getTardelogMap(new TardelogEnt(null, uid, vid, null, null, null, T_typeEnum.attachment, null,
+						TradeTypeEnum.buy)));
 		return text;
 	}
 
@@ -138,9 +143,11 @@ public class AttachmentUtil {
 	 *            显示模式
 	 * @return
 	 */
-	public String ReplaceRepAttachmentOut(int uid,String text, int vid, int rid, AttachmentUtil.mode mode) {
+	public String ReplaceRepAttachmentOut(int uid, String text, int vid, int rid, AttachmentUtil.mode mode) {
 		text = Util.upBr(text);
-		text = ReplaceAttachmentLable(text, as.getAttachmentList(vid, Attachment_InfoEnt.TYPE_REP, rid), mode,ts.getTardelogMap(new TardelogEnt(null, uid, vid, null, rid, null, T_typeEnum.attachment, null, TradeTypeEnum.buy)));
+		text = ReplaceAttachmentLable(text, as.getAttachmentList(vid, ArticleTypeEnum.rep, rid), mode,
+				ts.getTardelogMap(new TardelogEnt(null, uid, vid, null, rid, null, T_typeEnum.attachment, null,
+						TradeTypeEnum.buy)));
 		return text;
 	}
 
@@ -156,47 +163,41 @@ public class AttachmentUtil {
 	 *            显示模式
 	 * @return
 	 */
-	private String ReplaceAttachmentLable(String t, List<Attachment_InfoEnt> l, AttachmentUtil.mode mode,Map<Integer,TardelogEnt> tmap) {
+	private String ReplaceAttachmentLable(String t, List<Attachment_InfoEnt> l, AttachmentUtil.mode mode,
+			Map<Integer, TardelogEnt> tmap) {
 		if (null == l)
 			return t;
-		List<Attachment_InfoEnt> imgList = new ArrayList<Attachment_InfoEnt>();
-		List<Attachment_InfoEnt> docList = new ArrayList<Attachment_InfoEnt>();
-		for (Attachment_InfoEnt ai : l) {
-			if (ai.getA_type().equals(Attachment_InfoEnt.TYPE_IMG)) 
-				imgList.add(ai);
-			else 
-				docList.add(ai);
-		}
 		StringBuffer text = new StringBuffer(t);
-		for (Attachment_InfoEnt ai : imgList) {
-			String rep_text = "[img]" + ai.getAid() + "[/img]";
-			int index = text.indexOf(rep_text);
-			
-			String repStr = "<div><img style='width:60%;height:60%;' src=" + ai.getAttachment_url() + " name='"+ ai.getAid() + "' class='imgs'/></div>";
-			if (index == -1 && !AttachmentUtil.mode.EDIT.equals(mode)) 
-				text.append(repStr);
-			else if (index != -1) 
-				text.replace(index, index + rep_text.length(), repStr);
-		}
-		for (Attachment_InfoEnt ai : docList) {
-			if (!AttachmentUtil.mode.EDIT.equals(mode)) {
-				String rep_text = "[document]" + ai.getAid() + "[/document]";
+		for (Attachment_InfoEnt ai : l) {
+			if (ai.getA_type() == AttachmentTypeEnum.img) {
+				String rep_text = "[img]" + ai.getAid() + "[/img]";
 				int index = text.indexOf(rep_text);
-				
-				String repStr;
-				System.out.println(ai);
-				if (tmap.get(ai.getAid())!=null) {
-					repStr="<dl class='attachment'><dt><img src='static/image/Document.png' width='80' height='80'/></dt><dd>"
-							+ "<a href='AttachmentDownload.do?aid="+ai.getAid()+"&vid="+ai.getPid()+"'>"+ ai.getAttachment_formerly() + "</a></dd></dl>";
-				}else {
-					repStr= "<dl class='attachment'><dt><img src='static/image/Document.png' width='80' height='80'/></dt><dd>"
-							+ "<a href=javascript:; onclick=buy("+ai.getPid()+","+ai.getPrice()+",'attachment',"+ai.getAid()+","+ai.getRid()+")  >"+ ai.getAttachment_formerly() + "</a></dd><dd>"
-							+ "价格:"+ai.getPrice()+"</dd></dl>";
-				}
-				if (index == -1) 
+				String repStr = "<div><img style='width:60%;height:60%;' src=" + ai.getAttachment_url() + " name='"
+						+ ai.getAid() + "' class='imgs'/></div>";
+				if (index == -1 && !AttachmentUtil.mode.EDIT.equals(mode))
 					text.append(repStr);
-				 else 
+				else if (index != -1)
 					text.replace(index, index + rep_text.length(), repStr);
+			} else {
+				if (!AttachmentUtil.mode.EDIT.equals(mode)) {
+					String rep_text = "[document]" + ai.getAid() + "[/document]";
+					int index = text.indexOf(rep_text);
+					String repStr;
+					if (ai.getPrice()==0 || tmap.get(ai.getAid()) != null) {
+						repStr = "<dl class='attachment'><dt><img src='static/image/Document.png' width='80' height='80'/></dt><dd>"
+								+ "<a href='AttachmentDownload.do?aid=" + ai.getAid() + "&vid=" + ai.getPid() + "'>"
+								+ ai.getAttachment_formerly() + "</a></dd></dl>";
+					} else {
+						repStr = "<dl class='attachment'><dt><img src='static/image/Document.png' width='80' height='80'/></dt><dd>"
+								+ "<a href=javascript:; onclick=buy(" + ai.getPid() + "," + ai.getPrice() + ",'attachment',"
+								+ ai.getAid() + "," + ai.getRid() + ")  >" + ai.getAttachment_formerly() + "</a></dd><dd>"
+								+ "价格:" + ai.getPrice() + "</dd></dl>";
+					}
+					if (index == -1)
+						text.append(repStr);
+					else
+						text.replace(index, index + rep_text.length(), repStr);
+				}
 			}
 		}
 		return text.toString();

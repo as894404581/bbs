@@ -32,7 +32,7 @@ var PageCount=${PAGE_COUNT};
 					<p class="lip">
 						${i['see_count'] }次查看</p>
 					<p>
-						<span class="time">${i['issue_time'] }</span>
+						<span class="time">t${i['issue_time'] }</span>
 						 - 
 						<span>${i['action'] }</span>
 					</p>

@@ -1,4 +1,4 @@
-package xyz.zhtdemo.bbs.filter;
+package xyz.zhtdemo.bbs.handler;
 
 import java.io.IOException;
 
@@ -21,6 +21,7 @@ import xyz.zhtdemo.bbs.util.SacheData;
  * Servlet Filter implementation class IndexFilter
  */
 @WebFilter(urlPatterns={"/forum.go","/forumAjaxPost.go"})
+
 public class ForumgoFilters implements Filter {
 
 	

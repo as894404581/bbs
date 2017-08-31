@@ -39,8 +39,8 @@
 				<tr>
 					<td colspan="2" width="55%">全部主题</td>
 					<td width="15%">作者</td>
-					<td width="15%">回复/人气</td>
-					<td width="15%">最后发表</td>
+					<td width="10%">回复/人气</td>
+					<td width="20%">最后发表</td>
 				</tr>
 			</thead>
 			<tbody>

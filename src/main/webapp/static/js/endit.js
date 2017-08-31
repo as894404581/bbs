@@ -1,3 +1,4 @@
+
 var imgArr = new Array();
 //利用ajax上传附件
 function upload() {
@@ -82,13 +83,14 @@ function submitPost() {
 	var gIndex=$("#groupId ").get(0).selectedIndex;
 	var price=$("#price").val();
 	var param = {
-		"text": data1,
-		"titl": titl,
-		"fid": fid,
+		"content": data1,
+		"title": titl,
+		"plate_id": fid,
+		"price":price,
 		"aArr": imgArr,
-		"gIndex":gIndex,
-		"price":price
+		"gIndex":gIndex
 	};
+	console.log(param);
 	$.ajax({
 		type: "post",
 		url: "publish.go",
@@ -144,12 +146,12 @@ function postUpdate() {
 		$("#sub").attr("disabled", false);
 		return;
 	}
-	if(titl == '') {
+	if(titl.equals('') ) {
 		alert("标题不能为空!")
 		$("#sub").attr("disabled", false);
 		return;
 	}
-	if(data1 == '') {
+	if(data1 .equals('')) {
 		alert("帖子内容不能为空!")
 		$("#sub").attr("disabled", false);
 		return;
@@ -172,7 +174,7 @@ function postUpdate() {
 		async: true,
 		traditional: true,
 		success: function(json) {
-			if(json.state == 0) {
+			if( 0 == json.state) {
 				location.href = "viewthread.go?vid=" + vid + "&fid=" + fid + "&page=1";
 			}
 		},

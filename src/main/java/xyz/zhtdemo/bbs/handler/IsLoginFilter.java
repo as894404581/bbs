@@ -1,4 +1,4 @@
-package xyz.zhtdemo.bbs.filter;
+package xyz.zhtdemo.bbs.handler;
 
 import java.io.IOException;
 

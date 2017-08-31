@@ -14,6 +14,7 @@ import xyz.zhtdemo.bbs.entity.UserEnt;
 import xyz.zhtdemo.bbs.error.DataBaseException;
 import xyz.zhtdemo.bbs.error.ParameterException;
 import xyz.zhtdemo.bbs.error.SessionException;
+import xyz.zhtdemo.bbs.handler.CeditHandlerInterface;
 import xyz.zhtdemo.bbs.inter.PlateService;
 import xyz.zhtdemo.bbs.inter.PostService;
 import xyz.zhtdemo.bbs.inter.Reply_PostService;
@@ -43,6 +44,7 @@ public class ReplyServlet {
 	 */
 	@RequestMapping("repUpdate.go")
 	@ResponseBody
+	@CeditHandlerInterface
 	public Object repUpdate(int vid,int rid,String text,Integer aArr[],HttpSession session){
 		
 		UserEnt uEnt = (UserEnt) session.getAttribute("USER");
@@ -91,6 +93,7 @@ public class ReplyServlet {
 	@RequestMapping("reply.go")
 	@ResponseBody
 	@Transactional
+	@CeditHandlerInterface
 	public Object Reply_Post(int fid,String endit, int vid, HttpSession session,Integer[] aArr) {
 		if ("".equals(endit.trim()) || "".equals((vid+"").trim())) {
 			return new JsonResult(new ParameterException("errorCode03 参数错误"),03);

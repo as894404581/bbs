@@ -78,6 +78,11 @@ public class JsonResult implements Serializable {
 		data=null;
 		message=e.getMessage();
 	}
+	public JsonResult(Throwable e) {
+		state = ERROR;
+		data=null;
+		message=e.getMessage();
+	}
 	public JsonResult(Object data){
 		state=SUCCESS;
 		this.data=data;

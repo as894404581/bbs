@@ -58,22 +58,27 @@ public class DownloadServlet {
 				request.getRequestDispatcher("error.do").forward(request, response);
 			}
 			if (ai.getPrice()!=0) {
-				if (ue!=null&&(ts.getTardelog(new TardelogEnt(null, ue.getId(), vid, aid, null, null, T_typeEnum.attachment,null,TradeTypeEnum.buy))==null && ai.getUid().intValue()!=ue.getId().intValue())) {
+				if (ue!=null
+						&&(ts.getTardelog(new TardelogEnt(null, ue.getId(), vid, aid, null, null, T_typeEnum.attachment,null,TradeTypeEnum.buy))==null 
+						&& ai.getUid().intValue()!=ue.getId().intValue())) {
 					
 				}
 			}
-			
 			String path = session.getServletContext().getRealPath("/")+ai.getAttachment_url();
 			File file = new File(path);
 			if(!file.exists()){
 				throw new URLException("文件不存在!");
 			}
-			HttpHeaders headers = new HttpHeaders();
+			//新建响应头部
+			HttpHeaders headers = new HttpHeaders(); 
+			//获取文件名
 			String fileName = new String(ai.getAttachment_formerly().getBytes("UTF-8"), "iso-8859-1");// 为了解决中文名称乱码问题
 			headers.setContentDispositionFormData("attachment", fileName);
+			//设置响应类型
 			headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+			//设置标题长度
 			response.setContentLength((int) file.length()); 
-		
+			//返回数据
 			return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -5,6 +5,7 @@ import java.util.List;
 
 import xyz.zhtdemo.bbs.entity.Attachment_InfoEnt;
 import xyz.zhtdemo.bbs.entity.Attachment_UnusedEnt;
+import xyz.zhtdemo.bbs.enums.ArticleTypeEnum;
 
 public interface AttachmentService {
 	public static final String  ATTACHMENT_TYPE_POST="post";
@@ -27,7 +28,7 @@ public interface AttachmentService {
 	 * @param type type属性值:post为主题帖附件信息,rep为回复贴附件信息,为null则获取这个帖子中所有附件的id
 	 * @return
 	 */
-	public List<Attachment_InfoEnt> getAttachmentList(Integer id,String type,Integer rid);
+	public List<Attachment_InfoEnt> getAttachmentList(Integer id,ArticleTypeEnum type,Integer rid);
 	/**
 	 * 插入未使用附件信息
 	 * @param aue 未使用附件信息实体类

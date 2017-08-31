@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.zhtdemo.bbs.entity.Attachment_UnusedEnt;
 import xyz.zhtdemo.bbs.entity.UserEnt;
+import xyz.zhtdemo.bbs.enums.AttachmentTypeEnum;
 import xyz.zhtdemo.bbs.impl.AttachmentServiceImpl;
 import xyz.zhtdemo.bbs.util.Config;
 import xyz.zhtdemo.bbs.util.JsonResult;
@@ -59,6 +60,11 @@ public class UploadServlet {
 		return new JsonResult(imgEnt);
 	}
 
+	
+	private SimpleDateFormat y = new SimpleDateFormat("yyyy");
+	private SimpleDateFormat m = new SimpleDateFormat("MM");
+	private SimpleDateFormat dd = new SimpleDateFormat("dd");
+	
 	/**
 	 * 保存上传的图片
 	 * @param uuid 图片名
@@ -76,9 +82,6 @@ public class UploadServlet {
 			try {
 				//获取文件日期
 				Date d=new Date();
-				SimpleDateFormat y = new SimpleDateFormat("yyyy");
-				SimpleDateFormat m = new SimpleDateFormat("MM");
-				SimpleDateFormat dd = new SimpleDateFormat("dd");
 		        String y1 = y.format(d);
 		        String m1 =m.format(d);
 		        	String d1=dd.format(d);
@@ -103,10 +106,10 @@ public class UploadServlet {
 				aue.setUpload_time(System.currentTimeMillis());
 				for (String suffixs : imgSuffix) {
 					if(suffixs.equalsIgnoreCase(suffix.trim())){
-						aue.setA_type(Attachment_UnusedEnt.TYPE_IMG);
+						aue.setA_type(AttachmentTypeEnum.img);
 						break;
 					}else{
-						aue.setA_type(Attachment_UnusedEnt.TYPE_DOCUMENT);
+						aue.setA_type(AttachmentTypeEnum.document);
 					}
 				}
 				ii.insertUnusendAttachment(aue);

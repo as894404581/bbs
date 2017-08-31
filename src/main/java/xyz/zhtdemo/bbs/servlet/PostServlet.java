@@ -1,7 +1,4 @@
 package xyz.zhtdemo.bbs.servlet;
-
-
-
 import java.io.IOException;
 import java.util.List;
 
@@ -29,6 +26,7 @@ import xyz.zhtdemo.bbs.enums.TradeTypeEnum;
 import xyz.zhtdemo.bbs.error.LengthOutException;
 import xyz.zhtdemo.bbs.error.ParameterException;
 import xyz.zhtdemo.bbs.error.SessionException;
+import xyz.zhtdemo.bbs.handler.CeditHandlerInterface;
 import xyz.zhtdemo.bbs.inter.AttachmentService;
 import xyz.zhtdemo.bbs.inter.PostService;
 import xyz.zhtdemo.bbs.inter.Reply_PostService;
@@ -70,6 +68,7 @@ public class PostServlet {
 	 *            帖子id
 	 * @return
 	 */
+	@CeditHandlerInterface
 	@RequestMapping("updatepost.go")
 	@ResponseBody
 	@Transactional
@@ -117,27 +116,30 @@ public class PostServlet {
 	 *            板块id
 	 * @return
 	 */
+	@CeditHandlerInterface
 	@RequestMapping("publish.go")
 	@ResponseBody
-	public Object publish(String text, String titl, HttpSession session, int fid,Integer[] aArr,Integer gIndex,Integer price) {
-		if (titl.length() > 50) 
+	@Transactional
+	public Object publish(String content, String title, HttpSession session, int plate_id,Integer[] aArr,Integer gIndex,Integer price) {
+		if (title.length() > 50) 
 			return new JsonResult(new LengthOutException("标题超出长度!"),03);
 		UserEnt ue = (UserEnt) session.getAttribute("USER");
-		titl=Util.toUTF8(titl);
-		text=Util.toUTF8(text);
+		if (ue==null) 
+			return new JsonResult(new SessionException("登录超时,请重新登录!"));
+		title=Util.toUTF8(title);
+		content=Util.toUTF8(content);
 		// 插入帖子到数据库
 		PostEnt pe = new PostEnt();
-		pe.setPlate_id(fid);
-		pe.setTitle(titl);
-		pe.setContent(text);
+		pe.setPlate_id(plate_id);
+		pe.setTitle(title);
+		pe.setContent(content);
 		pe.setIssue_userid(ue.getId());
 		pe.setSee_count(0);
 		pe.setReply_count(0);
 		pe.setPrice(price);
-		pe.setAccess_rights(0==gIndex?SacheData.PlateMap.get(fid).getAccess_rights():SacheData.User_GroupMap.get(gIndex).getAccess_rights());
+		pe.setAccess_rights(0==gIndex?SacheData.PlateMap.get(plate_id).getAccess_rights():SacheData.User_GroupMap.get(gIndex).getAccess_rights());
 		ps.addPost(pe);
 		au.ReplacePostAttachmentIn(pe,aArr);
-		
 		return new JsonResult(pe.getId());
 
 	}
@@ -191,14 +193,14 @@ public class PostServlet {
 					+ "该帖子需要阅读权限:"+postAccess_right+"以上才能查看,当前阅读权限:"+userAccess_right);
 			request.setAttribute("A_URL", "index.do");
 			request.getRequestDispatcher("error.do").forward(request, response);
+			return null;
 		}
 		
 		if(pe.getPrice()!=0){
-			if(null==ue || (ts.getTardelog(new TardelogEnt(null, ue.getId(), vid, null, null, null, T_typeEnum.post,null,TradeTypeEnum.buy))==null && pe.getIssue_userid().intValue()!=ue.getId().intValue())){
+			if(null==ue || (ts.getTardelog(new TardelogEnt(null, ue.getId(), vid, null, null, null, T_typeEnum.post,null,TradeTypeEnum.buy))==null && pe.getIssue_userid().intValue()!=ue.getId().intValue()))
 				pe.setContent("当前主题需要购买,价格:"+pe.getPrice()+"  <a href='javascript:;' onclick=buy("+vid+","+pe.getPrice()+",'post') >购买主题!</a>");
-			}else{
+			else
 				pe.setContent(au.ReplacePostAttachmentOut(ue.getId(),pe.getContent() ,vid,AttachmentUtil.mode.VIEW));
-			}
 		}else{
 			pe.setContent(au.ReplacePostAttachmentOut(ue==null?-1:ue.getId(),pe.getContent() ,vid,AttachmentUtil.mode.VIEW));
 		}

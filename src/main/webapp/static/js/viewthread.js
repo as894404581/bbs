@@ -124,26 +124,20 @@ function addDocument(name) {
 }
 function buy(vid,price,mod,aid,rid){
 	var param;
-	if(mod=='post'){
+	if(mod=='post')
 		param={"vid":vid,"price":price,"mod":mod}
-	}else{
+	else
 		param={"vid":vid,"price":price,"mod":mod,"aid":aid,"rid":rid}
-	}
 	$.ajax({
 		type:"post",
 		url:"buy.go",
 		async:true,
 		data:param,
 		success:function(json){
-			if(json.state==0){
-				if(json.data=='post'){
-					location.reload();
-				}else{
-					location.resolveURL("AttachmentDownload.do?aid="+aid);
-				}
-			}else{
+			if(json.state==0)
+				location.reload();
+			else
 				alert(json.message);
-			}
 		}
 	});
 }

@@ -21,11 +21,11 @@
 		<!--是否开启登录邮箱验证 0:关闭 1:开启  -->
 		<Email_Verification>1</Email_Verification>
 		<!-- 邮件服务器地址 -->
-		<Email_Server>md-93.webhostbox.net</Email_Server>
+		<Email_Server>smtp.qq.com</Email_Server>
 		<!-- 邮箱用户名 -->
-		<Email_User>bsmt@bsmts.net</Email_User>
+		<Email_User>894404581@qq.com</Email_User>
 		<!-- 邮箱密码 -->
-		<Email_Password>as77889900</Email_Password>
+		<Email_Password>bagwexbrxqoebeci</Email_Password>
 		<!-- 邮件服务器端口 -->
 		<Email_Prot>465</Email_Prot>
 		<!-- 是否验证用户名和密码 -->

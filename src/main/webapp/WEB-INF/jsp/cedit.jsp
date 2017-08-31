@@ -94,16 +94,20 @@
 	<c:if test="${empty REPLY_POST}">
 	<div id="pSetting">
 		主题售价:<input type="text" id="price" style="width: 20px;"
-			value="${POST.price eq null?0:POST.price}">&nbsp; 阅读权限: <select id="groupId">
+			value="${POST.price eq null?0:POST.price}">&nbsp; 阅读权限: 
+			<select id="groupId">
+			<c:set var="index" value="0" />
 			<c:forEach items="${USER_GROUP }" var="name">
 			<c:choose>
-					<c:when test="${ACCESS_NAME eq name}">
+					<c:when test="${ACCESS_INDEX eq index}">
 						<option selected = 'selected'>${name }</option>
 					</c:when>
 					<c:otherwise>
 						<option>${name }</option>
 					</c:otherwise>
+					
 				</c:choose>
+				<c:set var="index" value="${index+1}" />
 			</c:forEach>
 		</select>
 	</div>
